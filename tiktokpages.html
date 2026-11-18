@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Конструктор сценарію для TikTok-відео</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F1EEFF;--ink:#1B1340;--muted:#5B5486;--pink:#FF2E63;--teal:#0BC5C0;--card:#FFFFFF;--line:#D9D2F5}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Manrope',system-ui,sans-serif;line-height:1.6;font-size:17px}
+h1,h2{font-family:'Unbounded','Manrope',sans-serif;line-height:1.15;margin:0 0 .6em}
+h1{font-size:clamp(2rem,6vw,3.8rem);font-weight:700}
+h2{font-size:clamp(1.3rem,3.4vw,1.9rem);font-weight:500}
+main{max-width:860px;margin:0 auto;padding:0 20px 80px}
+section{padding:48px 0;border-top:2px solid var(--line)}
+header.hero{padding:72px 0 48px}
+.hero p{max-width:34em;font-size:1.15rem;color:var(--muted)}
+.hero .scene{display:inline-block;background:var(--ink);color:#fff;border-radius:999px;padding:6px 16px;font-weight:800;font-size:.9rem;margin-bottom:20px}
+.hero .scene b{color:var(--pink)}
+a.btn,button{font:inherit;font-weight:800;cursor:pointer;border:0;border-radius:12px;padding:14px 24px;background:var(--pink);color:#fff;text-decoration:none;display:inline-block}
+button.alt{background:var(--ink)}
+button.ghost{background:transparent;color:var(--ink);border:2px solid var(--ink)}
+a.btn:hover,button:hover{filter:brightness(1.1)}
+:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.box{background:var(--card);border-radius:16px;padding:20px 22px;border-left:6px solid var(--teal)}
+.box.p{border-left-color:var(--pink)}
+.box h3{margin:0 0 6px;font-size:1.05rem}
+.box p{margin:0;color:var(--muted)}
+ol.steps{padding-left:0;list-style:none;counter-reset:s}
+ol.steps li{counter-increment:s;background:var(--card);border-radius:14px;padding:14px 18px 14px 64px;margin-bottom:10px;position:relative}
+ol.steps li::before{content:counter(s);position:absolute;left:16px;top:50%;transform:translateY(-50%);width:34px;height:34px;border-radius:50%;background:var(--pink);color:#fff;font-weight:800;display:grid;place-items:center}
+form.builder{display:grid;grid-template-columns:1fr 1fr;gap:14px;background:var(--card);padding:22px;border-radius:16px}
+form.builder .full{grid-column:1/-1}
+label{display:block;font-weight:800;font-size:.9rem;margin-bottom:4px}
+input,select{width:100%;font:inherit;padding:11px 12px;border:2px solid var(--line);border-radius:10px;background:#fff;color:var(--ink)}
+.out{background:var(--ink);color:#fff;border-radius:16px;padding:22px;margin-top:18px}
+.out h3{margin:0 0 12px;font-family:'Unbounded',sans-serif;font-size:1.05rem}
+.sc{display:grid;grid-template-columns:90px 1fr;gap:14px;padding:12px 0;border-top:1px solid #3a3070}
+.sc:first-of-type{border-top:0}
+.sc .t{color:var(--teal);font-weight:800}
+.sc .n{font-weight:800;color:var(--pink)}
+.sc p{margin:2px 0 0}
+.check{list-style:none;padding:0;margin:0}
+.check li{background:var(--card);border-radius:12px;margin-bottom:8px}
+.check label{display:flex;gap:12px;align-items:center;padding:12px 16px;margin:0;font-weight:600;cursor:pointer}
+.check input{width:22px;height:22px;accent-color:var(--pink)}
+.tpl{background:var(--card);border-radius:14px;padding:18px 22px;white-space:pre-wrap;font-family:'Manrope',sans-serif;border:2px dashed var(--line);margin-top:18px}
+.final{text-align:center}
+.actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:20px}
+#msg{min-height:1.6em;margin-top:12px;font-weight:800;color:var(--teal)}
+footer{text-align:center;color:var(--muted);font-size:.9rem;padding-bottom:30px}
+@media(max-width:620px){form.builder{grid-template-columns:1fr}.sc{grid-template-columns:1fr;gap:2px}}
+@media print{
+ body *{visibility:hidden}
+ #printable,#printable *{visibility:visible}
+ #printable{position:absolute;left:0;top:0;width:100%;background:#fff;color:#000;padding:20px}
+ #printable .out{background:#fff;color:#000;border:1px solid #999}
+ #printable .sc .t,#printable .sc .n{color:#000}
+}
+</style>
+</head>
+<body>
+<main>
+
+<!-- 1. Назва + 2. Опис -->
+<header class="hero">
+  <span class="scene">Сцена <b>1</b> з 5 · ваше відео починається тут</span>
+  <h1>Конструктор сценарію для TikTok-відео</h1>
+  <p>Введіть тему, аудиторію та тривалість — отримайте готовий сценарій із хуком, таймінгами сцен і закликом до дії. Скопіюйте його або збережіть у PDF і йдіть знімати.</p>
+  <p><a class="btn" href="#constructor">Скласти сценарій</a></p>
+</header>
+
+<!-- 3. Проблема -->
+<section id="problem">
+  <h2>З чим стикається автор відео</h2>
+  <div class="grid">
+    <div class="box p"><h3>Не знаю, з чого почати</h3><p>Є ідея, але перед камерою виходить хаос і зайві слова.</p></div>
+    <div class="box p"><h3>Глядач йде за 3 секунди</h3><p>Без сильного початку відео свайпають, не дочекавшись суті.</p></div>
+    <div class="box p"><h3>Забуваю про заклик до дії</h3><p>Відео набирає перегляди, але ніхто не підписується і не коментує.</p></div>
+  </div>
+</section>
+
+<!-- 4. Рішення -->
+<section id="solution">
+  <h2>Як сайт це вирішує</h2>
+  <p>Сценарій розбито на п’ять сцен: хук, проблема, головна частина, доказ і заклик до дії. Час між сценами розподіляється автоматично під вибрану тривалість, тож не потрібно рахувати секунди самому.</p>
+</section>
+
+<!-- 5. Інструкція -->
+<section id="howto">
+  <h2>Як користуватися сайтом</h2>
+  <ol class="steps">
+    <li>Впишіть тему відео та для кого воно.</li>
+    <li>Оберіть тип хука й тривалість: 15, 30 або 60 секунд.</li>
+    <li>Напишіть заклик до дії, наприклад «Підписуйся».</li>
+    <li>Перегляньте сценарій нижче: текст оновлюється одразу.</li>
+    <li>Пройдіться по чек-листу перед зйомкою.</li>
+    <li>Натисніть «Скопіювати» або «Зберегти як PDF».</li>
+  </ol>
+</section>
+
+<!-- Конструктор -->
+<section id="constructor">
+  <h2>Конструктор</h2>
+  <form class="builder" onsubmit="return false">
+    <div class="full"><label for="topic">Тема відео</label><input id="topic" value="як вчити англійську по 10 хвилин на день"></div>
+    <div><label for="aud">Для кого</label><input id="aud" value="студентів"></div>
+    <div><label for="dur">Тривалість</label>
+      <select id="dur"><option value="15">15 секунд</option><option value="30" selected>30 секунд</option><option value="60">60 секунд</option></select></div>
+    <div><label for="hook">Тип хука</label>
+      <select id="hook"><option value="q">Питання</option><option value="f">Шокуючий факт</option><option value="p">Обіцянка результату</option><option value="s">Особиста історія</option></select></div>
+    <div><label for="cta">Заклик до дії</label><input id="cta" value="Підписуйся, щоб не пропустити наступну частину"></div>
+  </form>
+  <div class="out" id="printable">
+    <h3 id="outTitle"></h3>
+    <div id="scenes"></div>
+    <div id="printCheck"></div>
+  </div>
+</section>
+
+<!-- 6. Чек-лист і шаблон -->
+<section id="checklist">
+  <h2>Чек-лист перед зйомкою</h2>
+  <ul class="check" id="checks">
+    <li><label><input type="checkbox"> Хук вкладається в перші 3 секунди</label></li>
+    <li><label><input type="checkbox"> Одна думка на одну сцену</label></li>
+    <li><label><input type="checkbox"> Світло падає на обличчя, звук чистий</label></li>
+    <li><label><input type="checkbox"> Додано субтитри</label></li>
+    <li><label><input type="checkbox"> Є заклик до дії в кінці</label></li>
+    <li><label><input type="checkbox"> Відео не довше за заплановану тривалість</label></li>
+  </ul>
+  <h2 style="margin-top:36px">Шаблон сценарію</h2>
+  <div class="tpl">Хук (0–3 с): …
+Проблема: …
+Головна частина: …
+Доказ або приклад: …
+Заклик до дії: …</div>
+</section>
+
+<!-- 7. Фінальна кнопка -->
+<section class="final" id="final">
+  <h2>Сценарій готовий</h2>
+  <p>Збережіть його або скопіюйте до нотаток.</p>
+  <div class="actions">
+    <button id="pdfBtn">Зберегти як PDF</button>
+    <button id="copyBtn" class="alt">Скопіювати текст</button>
+  </div>
+  <div id="msg" role="status"></div>
+</section>
+
+<footer>Домашнє завдання з HTML · односторінковий сайт</footer>
+</main>
+
+<script>
+const $ = id => document.getElementById(id);
+const hooks = {
+  q: t => `Чому ${t} не виходить, хоча ти стараєшся?`,
+  f: t => `Більшість людей помиляються, коли справа доходить до теми «${t}».`,
+  p: (t, d) => `За ${d} секунд я покажу, що робити з темою «${t}».`,
+  s: t => `Ще місяць тому я зовсім не розумів, що робити з темою «${t}».`
+};
+let plain = '';
+
+function build() {
+  const t = $('topic').value.trim() || 'ваша тема';
+  const a = $('aud').value.trim() || 'глядачів';
+  const d = +$('dur').value;
+  const cta = $('cta').value.trim() || 'Підписуйся';
+  const rest = d - 3;
+  const p = Math.round(rest * 0.2), m = Math.round(rest * 0.45), pr = Math.round(rest * 0.2);
+  const c = rest - p - m - pr;
+  let at = 0;
+  const seg = (len) => { const s = at; at += len; return `${s}–${at} с`; };
+  const scenes = [
+    ['Хук', seg(3), hooks[$('hook').value](t, d)],
+    ['Проблема', seg(p), `Знайомо? Багато ${a} відкладають цю тему, бо не знають, з чого почати.`],
+    ['Головна частина', seg(m), `Ось простий порядок дій: розбий тему на маленькі кроки, зроби перший вже сьогодні й фіксуй результат.`],
+    ['Доказ', seg(pr), `Покажи приклад, цифру або короткий кадр «до і після», щоб глядач повірив.`],
+    ['Заклик до дії', seg(c), cta + '.']
+  ];
+  $('outTitle').textContent = `Сценарій: ${t} (${d} с)`;
+  $('scenes').innerHTML = scenes.map(s =>
+    `<div class="sc"><div class="t">${s[1]}</div><div><span class="n">${s[0]}</span><p></p></div></div>`).join('');
+  [...$('scenes').querySelectorAll('p')].forEach((el, i) => el.textContent = scenes[i][2]);
+  plain = `Сценарій: ${t} (${d} с)\nАудиторія: ${a}\n\n` +
+    scenes.map(s => `${s[1]} · ${s[0]}\n${s[2]}`).join('\n\n');
+}
+
+['topic','aud','dur','hook','cta'].forEach(id => $(id).addEventListener('input', build));
+build();
+
+$('copyBtn').addEventListener('click', async () => {
+  try {
+    await navigator.clipboard.writeText(plain);
+    $('msg').textContent = 'Скопійовано!';
+  } catch (e) {
+    $('msg').textContent = 'Не вдалося скопіювати. Виділіть текст вручну.';
+  }
+});
+
+$('pdfBtn').addEventListener('click', () => {
+  const items = [...document.querySelectorAll('#checks li')].map(li =>
+    `${li.querySelector('input').checked ? '☑' : '☐'} ${li.textContent.trim()}`);
+  $('printCheck').innerHTML = '<h3 style="margin-top:20px">Чек-лист</h3>';
+  items.forEach(i => { const p = document.createElement('p'); p.textContent = i; p.style.margin = '4px 0'; $('printCheck').appendChild(p); });
+  window.print();
+  $('printCheck').innerHTML = '';
+  $('msg').textContent = 'У вікні друку оберіть «Зберегти як PDF».';
+});
+</script>
+</body>
+</html>
